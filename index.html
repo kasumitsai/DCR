@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>文件製作、修訂、廢止申請表</title>
+<style>
+* { box-sizing: border-box; }
+@page { size: A4 portrait; margin: 12mm 14mm; }
+body {
+  margin: 0; color: #000;
+  font-family: "Microsoft JhengHei", "PMingLiU", sans-serif;
+  font-size: 11pt;
+}
+.form-container { width: 182mm; margin: 0 auto; position: relative; }
+.heading { text-align: center; padding-top: 1mm; }
+.company { font-size: 20pt; font-weight: bold; letter-spacing: 3px; line-height: 1.35; }
+.form-title { font-size: 14pt; line-height: 1.4; }
+.number-wrap {
+  min-height: 12mm; display: flex; justify-content: flex-end;
+  align-items: flex-start; margin-top: 1mm;
+}
+.number-label { width: 20mm; padding-top: 1mm; }
+.number-entry { width: 42mm; min-height: 10mm; padding: 1mm; background: #ffefc7; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+td, th { border: 1px solid #000; padding: 1.2mm 1.5mm; vertical-align: top; font-weight: normal; overflow-wrap: anywhere; }
+.top-fields td, .name-fields td, .result-fields td, .bottom-fields td { height: 9mm; vertical-align: middle; }
+.label { white-space: nowrap; }
+.editable { background: #ffefc7; }
+[contenteditable="true"] { min-height: 1em; }
+[contenteditable="true"]:focus { outline: 1px solid #888; }
+.reason, .content { height: 32mm; }
+[contenteditable="true"][data-placeholder]:empty::before { content: attr(data-placeholder); color: #aaa; pointer-events: none; }
+.approval { min-height: 10mm; }
+.review { height: 32mm; }
+.result-title { background: #d9d9d9; text-align: center; height: 6mm; vertical-align: middle; padding: 0.5mm; }
+.office-note { color: #c00; font-size: 9pt; margin-left: 15mm; }
+.gray { background: #d9d9d9; }
+.doc-code { text-align: right; font-size: 9pt; margin-top: 2mm; }
+.print-area { margin: 8mm auto; text-align: center; }
+button { font-family: inherit; font-size: 12pt; padding: 7px 24px; border: 1px solid #555; border-radius: 3px; background: #f3f3f3; cursor: pointer; }
+@media screen {
+  body { background: #eee; padding: 12mm 0; }
+  .form-container { background: #fff; padding: 0; box-shadow: 0 1px 8px #bbb; }
+}
+@media print {
+  body { background: white; padding: 0; }
+  .form-container { width: 182mm; margin: 0 auto; box-shadow: none; }
+  .editable, .number-entry { background: white !important; }
+  .gray, .result-title { background: #d9d9d9 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .print-area { display: none !important; }
+  [contenteditable="true"]:focus { outline: none !important; }
+  tr { break-inside: avoid; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<main class="form-container">
+  <div class="heading">
+    <div class="company">品高企業股份有限公司</div>
+    <div class="form-title">文件製作、修訂、廢止申請表</div>
+  </div>
+
+  <div class="number-wrap">
+    <div class="number-label">編<br>號：</div>
+    <div class="number-entry" contenteditable="true" aria-label="編號"></div>
+  </div>
+
+  <table class="top-fields">
+    <colgroup><col style="width:12%"><col style="width:21%"><col style="width:12%"><col style="width:21%"><col style="width:11%"><col style="width:23%"></colgroup>
+    <tr>
+      <td class="label">日　　期</td><td class="editable" contenteditable="true"></td>
+      <td class="label">申請單位</td><td class="editable" contenteditable="true"></td>
+      <td class="label">申請人</td><td class="editable" contenteditable="true"></td>
+    </tr>
+  </table>
+
+  <table class="name-fields">
+    <colgroup><col style="width:14%"><col style="width:38%"><col style="width:17%"><col style="width:21%"></colgroup>
+    <tr>
+      <td class="label">文件名稱</td><td class="editable" contenteditable="true"></td>
+      <td class="label">原編號及版次</td><td class="editable" contenteditable="true" data-placeholder="ex:2-03 v1.1"></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr><td class="reason editable" contenteditable="true">增修廢原因：</td></tr>
+    <tr><td class="content editable" contenteditable="true">增修廢內容：</td></tr>
+    <tr><td class="approval">核准：</td></tr>
+    <tr><td class="review">審核會簽：</td></tr>
+    <tr><td class="result-title"><span>結　果</span><span class="office-note">以下文管填製</span></td></tr>
+  </table>
+
+  <table class="result-fields">
+    <colgroup><col style="width:18%"><col style="width:30%"><col style="width:23%"><col style="width:29%"></colgroup>
+    <tr>
+      <td class="gray">修訂後文件名稱</td><td class="gray" contenteditable="true"></td>
+      <td class="gray">修訂後文件編號及版本</td><td class="gray" contenteditable="true"></td>
+    </tr>
+  </table>
+
+  <table class="bottom-fields">
+    <colgroup><col style="width:30%"><col style="width:40%"><col style="width:30%"></colgroup>
+    <tr>
+      <td class="gray">完成日期： <span contenteditable="true"></span></td>
+      <td class="gray">發行(或廢止)日期： <span contenteditable="true"></span></td>
+      <td class="gray">文管： <span contenteditable="true"></span></td>
+    </tr>
+  </table>
+  <div class="doc-code">NO.20301-2.3</div>
+</main>
+
+<div class="print-area"><button type="button" onclick="window.print()">列印</button></div>
+</body>
+</html>
